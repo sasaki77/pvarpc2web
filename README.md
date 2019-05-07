@@ -36,13 +36,17 @@ Refer config file example [pvarpc2web.cfg](https://github.com/sasaki77/pvarpc2we
 `ch_name` must be requiered for a get request.
 The other parameters are optional.
 
+`nonturi` parameter is used for a pure pvAccess RPC service.
+
 ```
-http://?ch_name=chname&nturi=0&param1=param1&param2=param2
+http://?ch_name=chname&nonturi=0&param1=param1&param2=param2
 ```
 
 ### Post request
 A Post request sholud use `application/json`.
 The body of message must include `ch_name` and the others are optional.
+
+`nturi` determines a request argument style. If `nturi` is not 0 or `nturi` is not in the post request, the request argument is sent as NTURI.
 
 ```
 {
