@@ -14,6 +14,11 @@ def query():
             }
 
 
+def test_get_method_without_parameters(client, query):
+    rv = client.get('/')
+    assert rv.data == b'pvarpc2web is running'
+
+
 def test_get_method_request_with_nturi(client, query):
     ch = query['ch_name']
     lhs = query['query']['lhs']

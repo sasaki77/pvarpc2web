@@ -33,6 +33,8 @@ def pvarpc():
 
     if request.method == 'GET':
         args = request.args.to_dict()
+        if not args:
+            return 'pvarpc2web is running'
         try:
             ch_name = args['ch_name']
             del args['ch_name']
