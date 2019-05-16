@@ -2,6 +2,7 @@ from flask import Blueprint, current_app, request, jsonify
 from flask_cors import cross_origin
 
 from .pvaapi import pvaapi
+from .accessctrl import accessctrl
 from .exception import InvalidRequest
 
 
@@ -55,7 +56,13 @@ def pvarpc():
             raise InvalidRequest('Invalid query', status_code=400,
                                  details={'request': req})
 
-    res = pvaapi.rpccall(ch_name, query, nturi)
+    valid_ch = accessctrl.check(ch_name)
+
+    if valid_ch:
+        res = pvaapi.rpccall(ch_name, query, nturi)
+    else:
+        raise InvalidRequest('Denied ch name', status_code=400,
+                             details={'request': req})
 
     return jsonify(res)
 

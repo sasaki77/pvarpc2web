@@ -24,6 +24,7 @@ setup(
         'flask-cors',
         'pvapy',
         'pytz',
+        'pyyaml',
     ],
     extras_require={
         'develop': [

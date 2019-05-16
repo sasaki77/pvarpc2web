@@ -1,11 +1,26 @@
+import os
+
 import pytest
+
+from pvarpc2web.config import DefaultConfig
 
 from .context import pvarpc2web
 
 
+class TestConfig(DefaultConfig):
+    TESTING = True
+    PVA_RPC_TIMEOUT = 1
+    CHLIST_PATH = ''
+
+
 @pytest.fixture
 def app():
-    app = pvarpc2web.create_app('pvarpc2web.config.TestingConfig')
+    base_path = os.path.abspath((os.path.dirname(__file__)))
+    config_path = os.path.join(base_path, 'chlist.yml')
+
+    TestConfig.CHLIST_PATH = config_path
+
+    app = pvarpc2web.create_app(TestConfig)
     return app
 
 

@@ -1,0 +1,12 @@
+allow:
+  - 'allowed_ch'
+  - 'both_ch'
+  - 'ET_SASAKI:PVARPC2WEB:TEST:add_nturi'
+  - 'ET_SASAKI:PVARPC2WEB:TEST:add'
+  - 'NOT:EXIST:CH'
+  - ''
+  - 'DENIED:CH'
+deny:
+  - 'denied_ch'
+  - 'both_ch'
+  - 'DENIED:CH'

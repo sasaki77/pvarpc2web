@@ -9,6 +9,7 @@ from flask_cors import CORS
 from .config import DefaultConfig
 from .pvarpc2web import pvarpc2web
 from .pvaapi import pvaapi
+from .accessctrl import accessctrl
 
 
 def create_app(config_obj='pvarpc2web.config.DefaultConfig'):
@@ -43,6 +44,12 @@ def create_app(config_obj='pvarpc2web.config.DefaultConfig'):
 
     # settings for pvAccess
     pvaapi.timeout = app.config['PVA_RPC_TIMEOUT']
+
+    # settings for access control
+    if app.config['CHLIST_PATH']:
+        accessctrl.read_config(app.config['CHLIST_PATH'])
+    else:
+        app.logger.info('Run without access control')
 
     app.register_blueprint(pvarpc2web)
 

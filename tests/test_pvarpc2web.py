@@ -90,3 +90,27 @@ def test_query_not_exist_ch(client, query):
     res['details'] = {'ch': 'NOT:EXIST:CH'}
     assert rv.status_code == 400
     assert json_data == res
+
+
+def test_query_denied_ch(client, query):
+    query['ch_name'] = 'DENIED:CH'
+    rv = client.post('/', json=query)
+    json_data = rv.get_json()
+    res = {'message': 'Denied ch name'}
+    res['details'] = {'request': {'ch_name': 'DENIED:CH',
+                                  'query': {'lhs': 1, 'rhs': 1}
+                                  }}
+    assert rv.status_code == 400
+    assert json_data == res
+
+
+def test_query_non_declared_ch(client, query):
+    query['ch_name'] = 'NONDECLARED:CH'
+    rv = client.post('/', json=query)
+    json_data = rv.get_json()
+    res = {'message': 'Denied ch name'}
+    res['details'] = {'request': {'ch_name': 'NONDECLARED:CH',
+                                  'query': {'lhs': 1, 'rhs': 1}
+                                  }}
+    assert rv.status_code == 400
+    assert json_data == res
