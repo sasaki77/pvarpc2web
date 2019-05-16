@@ -30,6 +30,27 @@ See [here](http://flask.pocoo.org/) for more flask information.
 
 Refer config file example [pvarpc2web.cfg](https://github.com/sasaki77/pvarpc2web/blob/master/pvarpc2web.cfg).
 
+## Access Control
+
+Access control is available.  
+You need to create yaml file to enable access control.
+You also need to set path to yaml file.
+Please refer config file example [pvarpc2web.cfg](https://github.com/sasaki77/pvarpc2web/blob/master/pvarpc2web.cfg).
+
+Channels in `allow` list are allowed to connect.
+`deny` list is still useless.
+
+Regular expression is not allowed now.
+
+```yaml
+allow:
+  - 'allowed_ch1'
+  - 'allowed_ch2'
+  - 'allowed_ch3'
+deny:
+  - 'denied_ch'
+```
+
 ## HTTP Methods
 ### Get request
 
