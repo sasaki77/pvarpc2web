@@ -2,15 +2,8 @@ import os
 
 import pytest
 
-from pvarpc2web.config import DefaultConfig
-
 from .context import pvarpc2web
-
-
-class TestConfig(DefaultConfig):
-    TESTING = True
-    PVA_RPC_TIMEOUT = 1
-    CHLIST_PATH = ''
+from .config import TestConfig
 
 
 @pytest.fixture

@@ -9,12 +9,3 @@ class DefaultConfig(object):
     TIMEZONE = 'Asia/Tokyo'
     PVA_RPC_TIMEOUT = 5
     CHLIST_PATH = ''
-
-
-class TestingConfig(DefaultConfig):
-    """
-    Class for test configuration
-    """
-
-    TESTING = True
-    PVA_RPC_TIMEOUT = 1

@@ -1,12 +1,13 @@
 import os
 
 from .context import pvarpc2web
+from .config import TestConfig
 
 
 def test_config():
     """Test create_app without passing test config."""
     assert not pvarpc2web.create_app().testing
-    assert pvarpc2web.create_app('pvarpc2web.config.TestingConfig').testing
+    assert pvarpc2web.create_app(TestConfig).testing
 
 
 def test_config_from_file():
